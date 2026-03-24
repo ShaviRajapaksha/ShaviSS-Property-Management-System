@@ -12,3 +12,132 @@ datasource db {
   provider = "postgresql"
 }
 
+model Hotel {
+  id            String    @id @default(cuid())
+  name          String
+  decription    String?
+  email         String    @unique
+  phone         String
+  address       String
+  city          String
+  country       String
+  zipCode       String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  //rooms list should be added here
+  rooms         Room[]
+
+  //booking list should be added here
+  booking       Booking[]
+}
+
+model Room {
+  id            String    @id @default(uuid())
+  roomNumber    String
+  type          RoomType
+  floor         Int
+  capacity      Int
+  priceperNight Float
+  decription    String?
+  isAvailable   Boolean   @default(true)
+  hotelId       String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  //hotel relation should be added here
+  hotel         Hotel     @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  //booking list should be added here
+  booking       Booking[]
+}
+
+enum RoomType {
+  SINGLE
+  DOUBLE
+  TWIN
+  SUITE
+  DELUXE
+  PRESIDENTIAL
+}
+
+model Guest {
+  id            String     @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String     @unique
+  phone         String
+  address       String?
+  city          String?
+  country       String?
+  idNumber      String?    @unique
+  nationality   String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  //booking list should be added here
+  booking         Booking[]
+
+  //payment list should be added here
+  payment         Payment[]
+}
+
+model Booking {
+  id              String        @id @default(uuid())
+  checkInDate     DateTime
+  checkOutDate    DateTime  
+  totalPrice      Float
+  status          BookingStatus @default(PENDING) 
+  numberOfGuests  Int
+  specialRequests String?
+  guestId         String
+  roomId          String
+  hotelId         String
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  guest           Guest         @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  room            Room          @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  hotel           Hotel         @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  payment         Payment?
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CHECKED_IN
+  CHECKED_OUT
+  CANCELLED
+  NO_SHOW
+}
+
+model Payment {
+  id            String         @id @default(uuid())
+  amount        Float
+  method        PaymentMethod
+  status        PaymentStatus  @default(PENDING)
+  transactionId String?
+  bookingId     String         @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  booking       Booking        @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  guest         Guest?         @relation(fields: [guestId], references: [id])
+  guestId       String?
+}
+
+enum PaymentMethod {
+  CASH
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  ONLINE
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
