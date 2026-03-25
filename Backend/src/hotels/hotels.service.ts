@@ -16,7 +16,7 @@ export class HotelsService {
     async findAll() {
         return this.prisma.hotel.findMany({
             include: {
-                room: true,
+                rooms: true,
                 booking: true,
             }
         })
@@ -27,7 +27,7 @@ export class HotelsService {
             where: {id},
             include: {
                 rooms: true,
-                bookings: {
+                booking: {
                     include: {
                         guest: true,
                         room: true,
