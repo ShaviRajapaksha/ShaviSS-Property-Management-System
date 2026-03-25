@@ -27,14 +27,14 @@ export class HotelsController {
     @Patch(':id')
     @ApiOperation({summary: 'Update a hotel'})
     @ApiResponse({status: 200, type: HotelEntity})
-    update(@Param('id', ParseUUIDPipe) id: string, @Body() updateHotelDto: UpdateHotelDto) {
+    update(@Param('id') id: string, @Body() updateHotelDto: UpdateHotelDto) {
         return this.hotelService.update(id, updateHotelDto);
     }
 
     @Delete(':id') 
     @ApiOperation({summary: 'Delete a hotel'})
     @ApiResponse({status: 204})
-    remove(@Param('id', ParseUUIDPipe) id: string) {
+    remove(@Param('id') id: string) {
         return this.hotelService.remove(id);
     }
 }
