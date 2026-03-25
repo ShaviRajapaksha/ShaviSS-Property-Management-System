@@ -36,10 +36,10 @@ export class CreateHotelDto {
   @IsString()
   zipCode!: string;
 
-  @ApiProperty({ required: false, minimum: 0, maximum: 5 })
-  @IsOptional()
-  @IsNumber()
-  @Min(0)
-  @Max(5)
-  rating?: number;
+  // @ApiProperty({ required: false, minimum: 0, maximum: 5 })
+  // @IsOptional()
+  // @IsNumber()
+  // @Min(0)
+  // @Max(5)
+  // rating?: number;
 }
