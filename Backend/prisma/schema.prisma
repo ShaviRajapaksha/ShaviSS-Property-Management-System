@@ -10,7 +10,7 @@ datasource db {
 model Hotel {
   id            String    @id @default(cuid())
   name          String
-  decription    String?
+  description    String?
   email         String    @unique
   phone         String
   address       String
@@ -34,7 +34,7 @@ model Room {
   floor         Int
   capacity      Int
   priceperNight Float
-  decription    String?
+  description    String?
   isAvailable   Boolean   @default(true)
   hotelId       String
   createdAt     DateTime  @default(now())
