@@ -25,7 +25,7 @@ export class CreateRoomDto {
     @ApiProperty()
     @IsNumber()
     @Min(0)
-    PricePerNight!: number;
+    pricePerNight!: number;
 
     @ApiProperty({required:false})
     @IsOptional()
