@@ -12,15 +12,6 @@ export class RoomsService {
       data: createRoomDto,
     });
 
-    await this.prisma.hotel.update({
-      where: { id: createRoomDto.hotelId },
-      data: {
-        totalRooms: {
-          increment: 1,
-        },
-      },
-    });
-
     return room;
   }
 
@@ -29,7 +20,7 @@ export class RoomsService {
       where: hotelId ? { hotelId } : undefined,
       include: {
         hotel: true,
-        bookings: {
+        booking: {
           where: {
             status: {
               in: ['CONFIRMED', 'CHECKED_IN'],
@@ -76,7 +67,7 @@ export class RoomsService {
       where: { id },
       include: {
         hotel: true,
-        bookings: {
+        booking: {
           include: {
             guest: true,
           },
@@ -106,16 +97,6 @@ export class RoomsService {
     const room = await this.prisma.room.delete({
       where: { id },
     });
-
-    await this.prisma.hotel.update({
-      where: { id: room.hotelId },
-      data: {
-        totalRooms: {
-          decrement: 1,
-        },
-      },
-    });
-
     return room;
   }
 }
