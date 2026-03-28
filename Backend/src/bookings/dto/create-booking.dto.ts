@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsNumber, IsString, Min } from "class-validator";
-import { IsDateString } from "class-validator/types/decorator/string/IsDateString";
+import { IsDateString, IsInt, IsNumber, IsString, Min } from "class-validator";
 
 export class CreateBookingDto {
     @ApiProperty()
