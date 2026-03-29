@@ -236,5 +236,32 @@ npm run prisma:seed
 # Start development server
 npm run start:dev
 ```
-
+## Backend Screenshots
+<table>
+ <tr>
+ <td>
+<img width="1280" height="302" alt="Screenshot 2026-03-29 at 14 28 42" src="https://github.com/user-attachments/assets/caa741b7-7c0a-4a12-81d7-262f60d8c3a7" />
+ </td>
+ </tr>
+ <tr>
+ <td>
+<img width="1280" height="386" alt="Screenshot 2026-03-29 at 14 28 50" src="https://github.com/user-attachments/assets/2d74e990-2063-4326-9137-dcc5eec5a9b2" />
+ </td>
+ </tr>
+  <tr>
+ <td>
+<img width="1280" height="336" alt="Screenshot 2026-03-29 at 14 28 57" src="https://github.com/user-attachments/assets/7a68dbb3-64ea-4884-9e0c-5cb7af52837b" />
+ </td>
+ </tr>
+   <tr>
+ <td>
+<img width="1280" height="442" alt="Screenshot 2026-03-29 at 14 29 04" src="https://github.com/user-attachments/assets/9c6397de-2ab4-4c99-9aec-49eacd6fe055" />
+ </td>
+ </tr>
+   <tr>
+ <td>
+<img width="1280" height="389" alt="Screenshot 2026-03-29 at 14 29 11" src="https://github.com/user-attachments/assets/f4dfc322-0d02-427e-8fe8-cb990981868f" />
+ </td>
+ </tr>
+</table>
 
